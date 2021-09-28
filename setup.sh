@@ -29,11 +29,6 @@ echo 'server {
 
         server_name sammak.in www.sammak.in;
 
-        return 301 https://$host$request_uri;
-}
-
-server {
-        server_name sammak.in www.sammak.in;
         root /var/www/sammak.in/html;
         index index.html index.htm index.nginx-debian.html;
 
@@ -59,5 +54,5 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 echo 'Lets Encrypt...'
-sudo certbot --nginx --non-interactive --agree-tos -m me@sammak.in -d sammak.in -d www.sammak.in
+sudo certbot --nginx --redirect --non-interactive --agree-tos -m me@sammak.in -d sammak.in -d www.sammak.in
 sudo certbot renew --dry-run
