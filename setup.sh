@@ -27,10 +27,15 @@ echo 'server {
         listen 80;
         listen [::]:80;
 
+        server_name sammak.in www.sammak.in;
+
+        return 301 https://$host$request_uri;
+}
+
+server {
+        server_name sammak.in www.sammak.in;
         root /var/www/sammak.in/html;
         index index.html index.htm index.nginx-debian.html;
-
-        server_name sammak.in www.sammak.in;
 
         location / {
                 try_files $uri $uri/ =404;
@@ -47,7 +52,7 @@ echo 'server {
         }
 }' | sudo tee /etc/nginx/sites-available/sammak.in
 sudo ln -s /etc/nginx/sites-available/sammak.in /etc/nginx/sites-enabled/
-sudo sed -i 's/# server_names_hash_bucket_size 64;/server_names_hash_bucket_size 64;/' /etc/nginx/nginx.conf
+sudo sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
 
 echo 'Verifying site setup...'
 sudo nginx -t
