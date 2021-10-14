@@ -8,21 +8,21 @@
 # ssh-keygen -t ed25519 -C "watergetnoenemy@github.com"
 
 echo 'Installing...'
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install nginx -y
-sudo apt install certbot python3-certbot-nginx -y
+apt update -y
+apt upgrade -y
+apt install nginx -y
+apt install certbot python3-certbot-nginx -y
 
 echo 'Firewall...'
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
-sudo netfilter-persistent save
+iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+netfilter-persistent save
 
 echo 'Site setup...'
-sudo mkdir -p /var/www/sammak.in/html
-sudo chown -R $USER:$USER /var/www/sammak.in/html
-sudo chmod -R 755 /var/www/sammak.in
-sudo git clone --recurse-submodules git@github.com:SJMakin/site.git /var/www/sammak.in/html
+mkdir -p /var/www/sammak.in/html
+chown -R $USER:$USER /var/www/sammak.in/html
+chmod -R 755 /var/www/sammak.in
+git clone --recurse-submodules git@github.com:SJMakin/site.git /var/www/sammak.in/html
 echo 'server {
         listen 80;
         listen [::]:80;
@@ -45,14 +45,14 @@ echo 'server {
         location  /403/index.html {
         internal;
         }
-}' | sudo tee /etc/nginx/sites-available/sammak.in
-sudo ln -s /etc/nginx/sites-available/sammak.in /etc/nginx/sites-enabled/
-sudo sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
+}' | tee /etc/nginx/sites-available/sammak.in
+ln -s /etc/nginx/sites-available/sammak.in /etc/nginx/sites-enabled/
+sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
 
 echo 'Verifying site setup...'
-sudo nginx -t
-sudo systemctl restart nginx
+nginx -t
+systemctl restart nginx
 
 echo 'Lets Encrypt...'
-sudo certbot --nginx --redirect --non-interactive --agree-tos -m me@sammak.in -d sammak.in -d www.sammak.in
-sudo certbot renew --dry-run
+certbot --nginx --redirect --non-interactive --agree-tos -m me@sammak.in -d sammak.in -d www.sammak.in
+certbot renew --dry-run
