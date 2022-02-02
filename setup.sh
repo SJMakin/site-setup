@@ -12,8 +12,8 @@ apt update -y
 apt upgrade -y
 apt install nginx -y
 apt install certbot python3-certbot-nginx -y
-debconf-set-selections <<< "postfix postfix/mailname string sammak.in"
-debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+echo "postfix postfix/mailname string sammak.in" | debconf-set-selections
+echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 apt install -y postfix
 
 #echo 'Firewall...'
