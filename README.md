@@ -10,4 +10,4 @@ Will:
 * Setup site
 * Config SSL
 
-curl -s https://raw.githubusercontent.com/SJMakin/site-setup/main/setup.sh | sh
+curl -s https://raw.githubusercontent.com/SJMakin/site-setup/main/setup.sh | sudo sh
