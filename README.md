@@ -1,12 +1,13 @@
 # site-setup
-Setup script for my personal site. 
+Road runner setup script for my personal site. 
 
 Pre-req:
 * Ubuntu 20.04
 
 Will:
-* Install Nginx
+* Install stuff (nginx, certbox, postfix)
+* Setup catch-all email forwarding
 * Setup site
-* Install LetsEncrypt
+* Config SSL
 
 curl -s https://raw.githubusercontent.com/SJMakin/site-setup/main/setup.sh | sh
