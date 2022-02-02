@@ -4,7 +4,7 @@
 
 # Live long and prosper. 
 
-# Before running create ssh key and add it to GitHub.
+# Before running create ssh key and add it to GitHub, else the private repos wont clone.
 # ssh-keygen -t ed25519 -C "watergetnoenemy@github.com"
 
 echo 'Installing...'
@@ -12,11 +12,23 @@ apt update -y
 apt upgrade -y
 apt install nginx -y
 apt install certbot python3-certbot-nginx -y
+debconf-set-selections <<< "postfix postfix/mailname string sammak.in"
+debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+apt-get install -y postfix
 
 echo 'Firewall...'
 iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -p tcp --dport 25 -j ACCEPT
 netfilter-persistent save
+
+echo 'Email...'
+printf "\nvirtual_alias_domains = /etc/postfix/virtual_alias_domains" | tee -a /etc/postfix/main.cf
+printf "\nvirtual_alias_maps = hash:/etc/postfix/virtual_alias_maps" | tee -a /etc/postfix/main.cf
+printf "sammak.in" | tee /etc/postfix/virtual_alias_domains
+printf "@sammak.in watergetnoenemy@gmail.com" | tee /etc/postfix/virtual_alias_maps
+postmap /etc/postfix/virtual_alias_maps
+systemctl restart postfix
 
 echo 'Site setup...'
 mkdir -p /var/www/sammak.in/html
