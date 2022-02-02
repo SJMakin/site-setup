@@ -14,7 +14,7 @@ apt install nginx -y
 apt install certbot python3-certbot-nginx -y
 debconf-set-selections <<< "postfix postfix/mailname string sammak.in"
 debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
-apt-get install -y postfix
+apt install -y postfix
 
 echo 'Firewall...'
 iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
