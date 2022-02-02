@@ -16,11 +16,11 @@ debconf-set-selections <<< "postfix postfix/mailname string sammak.in"
 debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
 apt install -y postfix
 
-echo 'Firewall...'
-iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
-iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
-iptables -I INPUT 6 -m state --state NEW -p tcp --dport 25 -j ACCEPT
-netfilter-persistent save
+#echo 'Firewall...'
+#iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
+#iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+#iptables -I INPUT 6 -m state --state NEW -p tcp --dport 25 -j ACCEPT
+#netfilter-persistent save
 
 echo 'Email...'
 printf "\nvirtual_alias_domains = /etc/postfix/virtual_alias_domains" | tee -a /etc/postfix/main.cf
