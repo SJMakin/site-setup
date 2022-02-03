@@ -9,6 +9,6 @@ Will:
 * Setup catch-all email forwarding
 * Setup site
 * OpenVPN
-* Config SSL via LetEncrypt
+* SSL via LetsEncrypt
 
 curl -s https://raw.githubusercontent.com/SJMakin/site-setup/main/setup.sh | sudo sh
