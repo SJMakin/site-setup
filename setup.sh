@@ -72,6 +72,10 @@ echo 'Verifying site setup...'
 nginx -t
 systemctl restart nginx
 
+echo 'OpenVPN Road Warrior...'
+wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
+
+
 echo 'Lets Encrypt...'
 certbot --nginx --redirect --non-interactive --agree-tos -m me@sammak.in -d sammak.in -d www.sammak.in
 certbot renew --dry-run
