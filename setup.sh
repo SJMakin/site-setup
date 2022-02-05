@@ -8,8 +8,9 @@ set -e
 # Before running create ssh key and add it to GitHub, else the private repos wont clone.
 # sudo ssh-keygen -t ed25519 -C "watergetnoenemy@github.com"
 
-# Enable key based auth.
+# Enable key based auth. On the client:
 # cat ~/.ssh/id_rsa.pub | ssh ubuntu@sammak.in "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
+# Disable password auth:
 # sudo nano /etc/ssh/sshd_config
 # . . .
 # PasswordAuthentication no
