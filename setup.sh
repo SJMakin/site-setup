@@ -66,6 +66,13 @@ echo 'server {
         location  /403/index.html {
         internal;
         }
+        
+        add_header Content-Security-Policy "default-src 'self'; font-src *;img-src * data:; script-src *; style-src *";
+        add_header X-Frame-Options "SAMEORIGIN";
+        add_header X-XSS-Protection "1; mode=block";
+        add_header X-Content-Type-Options nosniff;
+        add_header Referrer-Policy "strict-origin";
+        
 }' | tee /etc/nginx/sites-available/sammak.in
 ln -s /etc/nginx/sites-available/sammak.in /etc/nginx/sites-enabled/
 sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
