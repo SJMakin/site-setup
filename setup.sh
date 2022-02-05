@@ -71,6 +71,7 @@ echo 'server {
         internal;
         }
         
+        server_tokens off;
         add_header Content-Security-Policy "default-src 'self'; font-src *;img-src * data:; script-src *; style-src *";
         add_header X-Frame-Options "SAMEORIGIN";
         add_header X-XSS-Protection "1; mode=block";
