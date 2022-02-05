@@ -58,17 +58,21 @@ echo 'server {
         }
         
         location /.git {
-           deny all;
+                deny all;
+        }
+
+        location / {
+                limit_except GET HEAD POST { deny all; }
         }
 
         error_page 404 /404/index.html;
         location  /404/index.html {
-        internal;
+                internal;
         }
 
         error_page 403 /403/index.html;
         location  /403/index.html {
-        internal;
+                internal;
         }
         
         server_tokens off;
