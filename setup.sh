@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Quick Ubuntu VPS setup script. 
 
