@@ -56,6 +56,10 @@ echo 'server {
         location / {
                 try_files $uri $uri/ =404;
         }
+        
+        location /.git {
+           deny all;
+        }
 
         error_page 404 /404/index.html;
         location  /404/index.html {
