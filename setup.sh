@@ -5,7 +5,7 @@
 # Live long and prosper. 
 
 # Before running create ssh key and add it to GitHub, else the private repos wont clone.
-# ssh-keygen -t ed25519 -C "watergetnoenemy@github.com"
+# sudo ssh-keygen -t ed25519 -C "watergetnoenemy@github.com"
 
 # Enable key based auth.
 # cat ~/.ssh/id_rsa.pub | ssh ubuntu@sammak.in "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
@@ -41,7 +41,7 @@ echo 'Site setup...'
 mkdir -p /var/www/sammak.in/html
 chown -R $USER:$USER /var/www/sammak.in/html
 chmod -R 755 /var/www/sammak.in
-git clone --recurse-submodules git@github.com:SJMakin/site.git /var/www/sammak.in/html
+sudo SSH_AUTH_SOCK=$SSH_AUTH_SOCK git clone --recurse-submodules git@github.com:SJMakin/site.git /var/www/sammak.in/html
 echo 'server {
         listen 80;
         listen [::]:80;
