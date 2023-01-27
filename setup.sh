@@ -87,8 +87,8 @@ echo 'Verifying site setup...'
 nginx -t
 systemctl restart nginx
 
-echo 'OpenVPN Road Warrior...'
-wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
+#echo 'OpenVPN Road Warrior...'
+#wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
 
 
 echo 'Lets Encrypt...'
