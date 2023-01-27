@@ -81,7 +81,7 @@ echo 'server {
         }
         
         server_tokens off;
-        add_header Content-Security-Policy "default-src 'self'; font-src *;img-src * data:; script-src *; style-src *";
+        add_header Content-Security-Policy "default-src 'self'; font-src *;img-src * data:; script-src code.jquery.com cdnjs.cloudflare.com maxcdn.bootstrapcdn.com; style-src *";
         add_header X-Frame-Options "SAMEORIGIN";
         add_header X-XSS-Protection "1; mode=block";
         add_header X-Content-Type-Options nosniff;
