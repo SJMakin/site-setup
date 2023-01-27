@@ -55,14 +55,11 @@ echo 'server {
 
         location / {
                 try_files $uri $uri/ =404;
+                limit_except GET HEAD POST { deny all; }
         }
         
         location /.git {
                 deny all;
-        }
-
-        location / {
-                limit_except GET HEAD POST { deny all; }
         }
 
         error_page 404 /404/index.html;
